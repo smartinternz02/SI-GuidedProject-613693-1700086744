@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Caption Generator</title>
+</head>
+<body>
+    <h1>Image Caption Generator</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        <label for="file">Choose an image:</label>
+        <input type="file" name="file" accept=".jpg, .jpeg, .png" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if caption %}
+        <h2>Generated Caption:</h2>
+        <p>{{ caption }}</p>
+        <img src="{{ url_for('static', filename='uploads/' + image_path) }}" alt="Uploaded Image">
+    {% endif %}
+
+    <p>Sign In <a href="{{ url_for('register') }}">HERE</a>.</p>
+</body>
+</html>
